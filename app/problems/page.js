@@ -111,32 +111,66 @@ const problems = [
       &\\text{This number appears for the first time after the N first arbitrarily picked numbers.} \\\\
       &\\text{We can prove that } L \\text{ will not appear } L \\text{ (or more) times in the sequence.} \\\\
       &\\text{Suppose } L \\text{ appears } L \\text{ times in the sequence.} \\\\
-      &\\text{Consider the first (and only) time } L \\text{ appears } \\ L \\text{ times in the sequence.} \\\\
+      &\\text{Consider the } L \\text{-th appearance of } \\ L \\text{ in the sequence.} \\\\
       &\\text{After the L-th appearance of L, by definition, L appears again.} \\\\
       &\\text{Notice that the L numbers before each appearance of L must be less than L.} \\\\
       &\\text{That is, because they can't be equal to L (the L-th appearance of L is unique) and } \\\\
       &\\text{if there was some k greater than L so that (k, L) appears, it would suggest that k} \\\\
       &\\text{appeared L times. But for each appearance of k>L there must be an appearance of L} \\\\
       &\\text{since for a number to appear more than L times it must first appear L times.} \\\\
-      &\\text{This is a contradiction, since these appearances of L are at least L in multitude, but} \\\\ &\\text{prior to the appearance of (L, L).} \\\\
-      &\\text{Thus, we have L numbers less than L. By the Pigeonhole Principle, at least two} \\\\
-      &\\text{of them must be equal. But this means that a number appears in the sequence for} \\\\ &\\text{the L-th time twice, which is clearly a contradiction.} \\\\
+      &\\text{This is a contradiction, since these appearances of L are at least L in multitude, but} \\\\ &\\text{prior to the L-th appearance of L that we considered at first.} \\\\
+      &\\text{Thus, we have L predecessor of L that are less than L. By the Pigeonhole Principle,} \\\\
+      &\\text{at least two of them must be equal. But this means that a number appears in the} \\\\ &\\text{sequence for the L-th time twice, which is clearly a contradiction.} \\\\
+      \\\\
+      \\\\
+      &\\underline{\\text{Observation:}} \\\\
+      &\\text{Lemma 3 suggests that there are only finitely many numbers that appear infinitely} \\\\
+      &\\text{many times in the sequence. Define the finite set } S \\text{ of these numbers.} \\\\
+      &\\text{Eventually, only one of the sequences } a_1, a_3, a_5, \\ldots \\text{ or } a_2, a_4, a_6, \\ldots \\text{ will contain} \\\\
+      &\\text{numbers in } S. \\text{ This is because the number of appearances of a number in } \\ S \\\\
+      &\\text{gets indefinitely big, since they appear infinitely many times, surpassing L.} \\\\
+      &\\text{Thus } a_n \\in S \\implies\\ a_{n+1} \\notin S. \\text{ Moreover, } a_{n+1}>L \\implies a_{n+2} < L \\text{, but we've chosen} \\\\
+      &\\text{n so that small numbers appear only in } S. \\text{ Thus, } a_{n+2} \\in S \\text{ as well.} \\\\
+      &\\text{The following pattern appears:} \\\\ &\\ a_n \\in S \\implies a_{n+1} \\notin S \\implies a_{n+2} \\in S \\implies a_{n+3} \\notin S \\implies a_{n+4} \\in S \\implies ... \\\\
+      &\\text{Thus, } \\ a_n, a_{n+2}, a_{n+4}, \\ldots \\in S \\text{ is a bounded subsequence, for large enouph values of n.} \\\\
+      &\\text{Also, notice that } S = \\{1, 2, 3, ..., |S| \\} \\text{ since a number can not appear infinetely many} \\\\ 
+      &\\text{times if its predecessor has not appeared infinitely many times.} \\\\
+      \\\\
+      \\\\
+      &\\underline{\\text{lemma 4:}} \\text{ The differences between the terms of the unbounded subsequence between} \\\\
+      &\\text{two consecutive appearances of a number in } S \\text{ are bounded.} \\\\
+      \\\\
+      &\\underline{\\text{Proof:}} \\\\
+      &\\text{Case 1: There is an n so that 1 has appeared more than any other number in } S. \\\\
+      &\\text{Let's suppose that this number is } M. \\text{ Then, the sequence is as follows: } \\\\
+      &\\ ... , 1, M, 1, (M + 1), 1, (M + 2), 1, (M + 3), 1, ... \\text{ which yields differences of } 1. \\\\  
+      \\\\
+      &\\text{Case 2: There is no such n. Thus, there is an number } K \\in S \\text{ that appears more.} \\\\
+      &\\ K > 1 \\implies \\text{The number of appearances of K can only differ a bounded amount} \\\\
+      &\\text{from the number of appearances of 1. This is because, every appearance of } K > 1 \\\\
+      &\\text{ can be mapped to an appearance of 1 before it}. \\\\
+      &\\text{Consider } K_0 \\text{ (the smallest such K in S) and } D \\text{ (the mentioned bound).} \\\\
+      &\\text{So each element less or equal to } K_0 \\text{ in S appears as much as 1 (give or take D).} \\\\
+      &\\text{Suppose } K_0 < |S|. \\text{ Then, any number } K' > K_0 \\text{ appears indefinitely less times than } 1. \\\\
+      &\\text{Take an appearance of } a_n = K' \\in S \\implies a_{n+1} \\text{ is the number of appearances of } K', \\\\
+      &\\text{which is less than the number of appearances of } 1 \\text{ minus D.} \\\\
+      &\\text{This must be at least the } (K_0 + 1) \\text{-th appearance of } a_{n+1} \\text{, since every number that} \\\\
+      &\\text{has appeared more than } a_{n+1} \\text{ times also has appeared exactly that many times.} \\\\
+      &\\text{But, we have at least } K_0 \\text{ such numbers (the numbers in S less or equal to } K_0). \\\\
+      &\\text{Thus, } a_{n+2} \\geq K_0 + 1 \\implies a_{n+2} > K_0 = K'' .\\\\
+      &\\text{Notice how we started with an arbitrary } a_n = K' > K_0 \\text{ and implied that } a_{n+2} > K_0. \\\\
+      &\\text{Thus, we can repeat this indefinitely, showing that } a_n, a_{n+2}, a_{n+4}, ... > K_0. \\\\
+      &\\text{This contradicts every number in } S \\text{ appearing indefinitely.} \\text{ Thus } K_0 = |S| . \\\\
+      &\\text{In Conclution, all numbers in } S \\text{ appear approximately as much as 1 (give or take D).} \\\\
       \\\\
       \\\\
       &\\underline{\\text{Conclusion:}} \\\\
-      \\\\
-      &\\text{Lemma 3 suggests that there are only finitely many numbers that appear infinitely} \\\\
-      &\\text{many times in the sequence. Consider the finite set } S \\text{ of these numbers.} \\\\
-      &\\text{Eventually, only one of the sequences } a_1, a_3, a_5, \\ldots \\text{ or } a_2, a_4, a_6, \\ldots \\text{ will contain} \\\\
-      &\\text{numbers in } S. \\text{ This is because the number of appearances of a number in } \\ S \\\\
-      &\\text{gets indefinitely big (surpassing L)} \\implies\\ a_n \\in S \\implies\\ a_{n+1} \\notin S \\implies\\ a_{n+2} \\in S. \\\\
-      &\\text{Thus, } \\ a_n, a_{n+2}, a_{n+4}, \\ldots \\in S \\text{, for large enouph values of n.} \\\\
-      &\\text{We can also notice that the sequence above only depends on whether the terms: } \\\\
-      &\\ a_{n+1}, a_{n+3}, a_{n+5}, \\ldots \\text{, increase. So only the differences of those terms effect the } \\\\ &\\text{ the bounded sub-sequence. We can prove that those differences are bounded.} \\\\
-      &\\text{However, since both the values of the bounded sub-sequence and the differences on } \\\\ &\\text{the unbounded sub-sequence are finite, their combinations are also finite.} \\\\
-      &\\text{Thus, those combinations eventually repeat and the sequence will re-visit states.} \\\\
-      &\\text{In Conclution, } a_n, a_{n+2}, a_{n+4}, \\ldots \\text{ is periodic for large enouph values of n.} \\quad \\blacksquare
-      \\end{aligned}
+      &\\ a_n, a_{n+2}, a_{n+4}, \\ldots \\text{ is a bounded sequence}. \\\\
+      &\\ a_{n+1}, a_{n+3}, a_{n+5}, \\ldots \\text{ can be expressed as the total appearances of 1s plus} \\\\ &\\text{a bounded sequence.} \\\\
+      &\\text{Notice that both of the bounded sequences mentioned can be determined by } \\\\
+      &\\text{their previous |S| values. Thus, since the combinations of values is finite they} \\\\ &\\text{will repeat. In conclution, both bounded sequences are eventually periodic.} \\\\
+      &\\text{So } a_n, a_{n+2}, a_{n+4}, \\ldots \\text{ will eventually be periodic.} \\quad \\blacksquare
+      \\end{aligned} 
     ` 
   },
   {
