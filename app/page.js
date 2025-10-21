@@ -1,3 +1,7 @@
+// link: https://math-notes-pf9zkbe50-ion530s-projects.vercel.app/
+// run locally: npm run dev
+// git push: git add . && git commit -m "your message" && git push origin main
+
 import Image from "next/image";
 
 export default function Home() {
@@ -27,7 +31,7 @@ export default function Home() {
                 href="/closed" 
                 className="w-full px-6 py-4 bg-grey-50 hover:bg-grey-100 border border-grey-200 rounded-lg shadow-sm transition-all duration-200 text-center"
               >
-                <h2 className="text-2xl font-semibold text-black-800 mb-1">ScrapBook</h2>
+                <h2 className="text-2xl font-semibold text-black-800 mb-1">Scrapbook</h2>
                 <p className="text-black-600">Closed topics</p>
               </a>
 

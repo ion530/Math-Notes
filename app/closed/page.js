@@ -14,10 +14,11 @@ const proofs = [
     \\\\
     &\\text{Claim: } \\forall y \\in [X,X^2], \\ y \\text{ is prime } \\iff y \\equiv 1 \\ (\\mathrm{mod}\\ X). \\\\
     &\\text{Proof of Claim:} \\\\
-    &\\quad (\\Rightarrow) \\text{ Let } y \\text{ be prime. Suppose } y \\not\\equiv 1 \\ (\\mathrm{mod}\\ X). \\\\
-    &\\quad\\quad \\text{Then } y = kX + r \\text{ where } 2 \\leq r \\leq X. \\\\
-    &\\quad\\quad \\exists \\text{prime p} \\leq r<y \\text{ dividing } r \\text{ (since } r \\geq 2). \\\\
-    &\\quad\\quad p \\mid X \\text{ (by definition of X) and } p \\mid r \\implies p \\mid y, \\text{(with } p \\not= y) \\text{ contradicting } y \\text{ being prime.} \\\\
+    &\\quad (\\Rightarrow) \\text{ Let } y \\in [X, X^2] \\text{ be prime. Suppose } y \\not\\equiv 1 \\ (\\mathrm{mod}\\ X). \\\\
+    &\\quad\\quad \\text{Thus, } y = kX + r \\text{ where } 2 \\leq r \\leq X. \\\\
+    &\\quad\\quad \\exists \\text{prime p} \\leq r<y \\text{ such that } p \\mid r \\text{, since } r \\geq 2 \\text{ and every number bigger than 1} \\\\ &\\quad\\quad\\text{has a prime factor.} \\\\
+    &\\quad\\quad p \\mid X \\text{ (by definition of X) and } p \\mid r \\implies p \\mid y, \\text{ with } p < y \\\\
+    &\\quad\\quad\\text{In conclusion, we found a prime divisor of } y \\text{, contradicting } y \\text{ being prime.} \\\\
     \\\\
     &\\quad (\\Leftarrow) \\text{ Strong induction on } k \\text{ for } y = kX + 1: \\\\
     &\\quad\\quad \\text{Base Case } (k=1): y = X+1 \\text{ and suppose X + 1 is composite. } \\\\
@@ -27,13 +28,19 @@ const proofs = [
     &\\quad\\quad \\text{Inductive Step: Assume that } \\forall k' \\leq k \\text{ it follows that } \\ k'X+1 \\text{ is prime.} \\\\
     &\\quad\\quad \\text{Assume } y = (k+1)X+1 \\text{ is composite and let } p \\text{ be its smallest prime factor.} \\\\
     &\\quad\\quad \\text{Case 1: } p \\leq X \\implies p \\mid X \\text{ and } \\ p \\mid (k+1)X + 1 \\implies p \\mid 1, \\text{ contradiction.} \\\\
-    &\\quad\\quad \\text{Case 2: } p > X \\implies p = k'X+1 \\text{ for some } k' \\leq k \\text{ (already proved).} \\\\
-    &\\quad\\quad p \\mid y \\implies p \\mid (k'X + 1) + (k - k' + 1)X \\implies p \\mid p + (k - k' + 1)X \\implies p \\mid (k - k' + 1)X \\implies p \\mid k - k' + 1 \\text{ (since } p \\nmid X). \\\\
-    &\\quad\\quad \\text{But } X < p \\leq k - k' + 1 < k + 1 \\implies X^2 < X(k+1) = y - 1 < X^2, \\text{ contradiction.} \\\\
+    &\\quad\\quad \\text{Case 2: } p > X \\implies p = k'X+1 \\text{ for some } k' \\leq k \\text{ (which is already proved).} \\\\
+    &\\quad\\quad p \\mid y \\implies p \\mid (k'X + 1) + (k - k' + 1)X \\implies p \\mid p + (k - k' + 1)X \\implies \\\\
+    &\\quad\\quad p \\mid (k - k' + 1)X \\implies p \\mid k - k' + 1 \\text{, because } gcd(p, X) = 1 \\text{ (since } p > X). \\\\
+    &\\quad\\quad \\text{Thus, } p \\leq k - k' + 1 \\text{ and } p > X \\implies X \\leq k - k' + 1 < k + 1 \\implies \\\\
+    &\\quad\\quad X^2 < X(k+1) = y - 1 < y \\leq X^2 \\implies X^2 < X^2, \\text{ clear contradiction.} \\\\
     \\\\
     &\\text{Final Step: Take } k = X-2: \\\\
-    &\\quad y = (X-2)X + 1 = X^2 - 2X + 1 = (X-1)^2 \\text{ must be prime (due to the previous claim).} \\\\
+    &\\quad y = (X-2)X + 1 = X^2 - 2X + 1 = (X-1)^2 \\implies y \\equiv 1 \\ (\\mathrm{mod}\\ X) \\land X < y < X^2 \\\\
+    &\\quad \\text{Thus, due to the claim we proved, } (X - 1)^2 \\text{ must be a prime number.} \\\\
     &\\quad \\text{But perfect squares are never prime.} \\quad \\blacksquare
+    \\\\
+    \\\\
+    &\\underline{\\text{Note:}} \\ X = 2 \\text{ works because the inequality } X < (X-1)^2 < X^2 \\text{ fails for } X = 2.
     \\end{aligned}
   `
   },
@@ -91,7 +98,7 @@ const proofs = [
   }*/
  {
     id: '2',
-    title: `A Proof Of The Foundational Theorem of Algebra`,
+    title: `A Proof Of The Fundamental Theorem of Algebra`,
     claim: `$\\text{Every polynomial p(z) with degree n has n roots: } r_1, ..., r_n \\text{ and can be factored } \\\\ \\text{as } p(z) = a(z - r_1)...(z - r_n).$`,
     proof: `
     \\begin{aligned}
@@ -138,6 +145,27 @@ const proofs = [
     &\\text{Suppose } \\sum_{n=1}^{\\infty} \\frac{1}{n} \\text{ converges to } S \\in \\mathbb{R}. \\\\
     &\\ S = \\sum_{n=1}^{\\infty} \\frac{1}{2n - 1} + \\sum_{n=1}^{\\infty} \\frac{1}{2n} = \\sum_{n=1}^{\\infty} \\frac{1}{2n - 1} + \\frac{1}{2} \\sum_{n=1}^{\\infty} \\frac{1}{n} = \\sum_{n=1}^{\\infty} \\frac{1}{2n - 1} + \\frac{1}{2} S \\implies \\\\
     &\\ S = \\sum_{n=1}^{\\infty} \\frac{2}{2n - 1} = \\sum_{n=1}^{\\infty} \\frac{1}{n - \\frac{1}{2}} > \\sum_{n=1}^{\\infty} \\frac{1}{n} = S \\implies S > S, \\text{ contradiction.} \\quad \\blacksquare 
+    \\end{aligned}
+  `
+  },
+  {
+    id: '4',
+    title: `Legendre's formula`,
+    claim: `$\\text{Given a prime } p, \\ v_p(n!) = \\sum_{k=1}^{\\infty} \\left\\lfloor \\frac{n}{p^k} \\right\\rfloor.$`,
+    proof: `
+    \\begin{aligned}
+    &\\text{Let } n \\in \\mathbb{N} \\text{ and } p \\text{ a prime.} \\\\
+    &\\ v_p(n!) = \\sum_{k=1}^{n} v_p(k) \\text{ and notice that } v_p(k) = 0 \\text{ whenever } p \\nmid k. \\\\
+    &\\text{So we only need to consider the multiples of } p: \\\\
+    &\\ v_p(n!) = \\sum_{k=1}^{\\lfloor n/p \\rfloor} v_p(pk) = \\sum_{k=1}^{\\lfloor n/p \\rfloor} (1 + v_p(k)) = \\lfloor \\frac{n}{p} \\rfloor + \\sum_{k=1}^{\\lfloor n/p \\rfloor} v_p(k) = \\lfloor \\frac{n}{p} \\rfloor + v_p(\\lfloor n/p \\rfloor !) \\\\
+    \\\\ &\\text{Notice that this is a recursive formula for } v_p(n!) \\text{ thus we can solve it via induction.} \\\\
+    \\\\
+    &\\underline{\\text{Strong Induction on } n:} \\\\
+    &\\text{Base Case: } n = 1, \\ v_p(1!) = 0 \\text{ and } \\sum_{k=1}^{\\infty} \\left\\lfloor \\frac{1}{p^k} \\right\\rfloor = 0. \\\\
+    &\\text{Inductive Step: Assume the formula holds for all } m < n. \\text{ Here } m = \\lfloor \\frac{n}{p} \\rfloor < n.\\\\
+    &\\text{Then, using the recursive formula:} \\\\
+    &\\ v_p(n!) = \\lfloor \\frac{n}{p} \\rfloor + v_p(\\lfloor n/p \\rfloor !) = \\lfloor \\frac{n}{p} \\rfloor + \\sum_{k=1}^{\\infty} \\left\\lfloor \\frac{\\lfloor n/p \\rfloor}{p^k} \\right\\rfloor = \\lfloor \\frac{n}{p} \\rfloor + \\sum_{k=1}^{\\infty} \\left\\lfloor \\frac{n/p}{p^k} \\right\\rfloor \\\\
+    &\\ v_p(n!) = \\lfloor \\frac{n}{p} \\rfloor + \\sum_{k=1}^{\\infty} \\left\\lfloor \\frac{n}{p^{k+1}} \\right\\rfloor = \\lfloor \\frac{n}{p} \\rfloor + \\sum_{k=2}^{\\infty} \\left\\lfloor \\frac{n}{p^k} \\right\\rfloor = \\sum_{k=1}^{\\infty} \\left\\lfloor \\frac{n}{p^k} \\right\\rfloor. \\quad \\blacksquare
     \\end{aligned}
   `
   }

@@ -262,6 +262,43 @@ const problems = [
     &\\text{compute } f(x) = \\prod_{n=1}^{\\infty} (1 + x^{2^n}) = \\sum_{n=0}^{\\infty} x^n = \\frac{1}{1 - x} \\quad \\blacksquare
     \\end{aligned}
     `
+  },
+  {
+    id: '7',
+    title: 'N2 IMO Shortlist 2022',
+    category: 'Number Theory',
+    problem: `$\\text{Find all positive integers } n > 2 \\text{ such that } n! \\mid \\prod_{p<q \\leq n} (p + q) \\\\ \\text{Where p, q are primes.}$`,
+    solution:`
+    \\begin{aligned}
+    &\\text{Let's assume that } p_1 < p_2 < ... < p_m \\leq n \\text{ are the primes less than or equal to n.} \\\\
+    \\\\
+    &\\underline{\\text{claim 1:}} \\ p_m = p_{m-1} + 2 \\\\
+    &\\underline{\\text{proof:}} \\\\
+    &\\ p_m \\mid n! \\implies \\ p_m \\mid \\prod_{p<q \\leq n} (p + q) \\implies \\ p_m \\mid p_i + p_j \\text{ for some } i, j < m \\\\
+    &\\text{Suppose for the sake of contradiction that neither } p_i \\text{ nor } p_j \\text{ is } 2. \\\\
+    &\\text{Then, both } p_i \\text{ and } p_j \\text{ are odd primes } \\implies p_i + p_j \\text{ is even and } p_m \\text{ is odd } \\\\
+    &\\implies 2p_m \\mid p_i + p_j \\implies 2p_m \\leq p_i + p_j < 2p_{m-1} < 2p_m \\text{, contradiction.} \\\\
+    \\\\
+    &\\text{Thus, one of } p_i \\text{ or } p_j \\text{ is } 2. \\text{ Without loss of generality, let } p_j = 2 \\implies \\\\ 
+    &\\ p_m \\mid p_i + 2 \\implies p_m \\leq p_i + 2 \\leq p_{m-1} + 2 \\implies p_m = p_{m-1} + 2 \\text{ or } p_m = p_{m-1} + 1 \\\\
+    \\\\
+    &\\text{But if } p_m = p_{m-1} + 1 \\text{ then } p_m = 3 \\text{, beacause 2 and 3 are the only consecutive primes} \\\\ &\\implies n \\in \\{3, 4\\}.
+    \\text{ Checking both cases, we find that neither work.} \\\\ &\\text{Thus, } p_m = p_{m-1} + 2 . \\\\
+    \\\\
+    &\\underline{\\text{claim 2:}} \\ p_{m-1} = p_{m-2} + 2 \\\\
+    &\\underline{\\text{proof:}} \\\\
+    &\\ p_{m-1} \\mid n! \\implies \\ p_{m-1} \\mid \\prod_{p<q \\leq p_m} (p + q) \\implies \\ p_{m-1} \\mid \\prod_{p<q \\leq p_{m-1}} (p + q) \\cdot \\prod_{i=1}^{m-1} (p_i + p_m) \\\\
+    &\\text{Case 1: } p_{m-1} \\mid \\prod_{p<q \\leq p_{m-1}} (p + q) \\implies \\text{ by the same reasoning as in claim 1, } \\\\ &\\text{ we find that } p_{m-1} = p_{m-2} + 2. \\\\
+    \\\\
+    &\\text{Case 2: } p_{m-1} \\mid \\prod_{i=1}^{m-1} (p_i + p_m) \\implies \\ p_{m-1} \\mid \\prod_{i=1}^{m-1} (p_i + p_{m-1} + 2) \\implies p_{m-1} \\mid \\prod_{i=1}^{m-1} (p_i + 2) \\\\
+    &\\text{Thus, for some } i < m-1, \\ p_{m-1} \\mid p_i + 2 \\implies p_{m-1} \\leq p_i + 2 \\leq p_{m-2} + 2 \\implies \\\\ &\\ p_{m-1} = p_{m-2} + 2. \\text{ We have excluded } p_{m-1} = p_{m-2} + 1 \\text{ due to prior reasoning.} \\\\
+    \\\\
+    &\\underline{\\text{Conclusion:}} \\\\
+    &\\text{We have created a set of three consecutive twins primes } \\{p_{m-2}, p_{m-1}, p_m\\} \\\\
+    &\\text{However, the only such set is } \\{3, 5, 7 \\} \\implies p_m = 7 \\implies n \\in \\{7, 8, 9, 10 \\}. \\\\
+    &\\text{Checking those four values, we find that only } n = 7 \\text{ works.} \\quad \\blacksquare
+    \\end{aligned}
+    `
   }
 ];
 
