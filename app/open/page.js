@@ -5,8 +5,8 @@ export default function Open() {
     <main className="min-h-screen p-8 bg-white text-gray-900">
       {/* Header */}
       <div className="text-center mb-12">
-        <h1 className="text-4xl font-bold mb-2">Research Notebook</h1>
-        <p className="text-xl text-gray-600">My work on open problems</p>
+        <h1 className="text-4xl font-bold mb-2">Notebook</h1>
+        <p className="text-xl text-gray-600">Open Topics</p>
       </div>
 
       {/* Content */}
