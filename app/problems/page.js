@@ -333,6 +333,96 @@ const problems = [
     &\\text{Checking those four values, we find that only } n = 7 \\text{ works.} \\quad \\blacksquare
     \\end{aligned}
     `
+  },
+  {
+    id: '8',
+    title: 'Problem 6 IMC 2024',
+    category: "Combinatorics",
+    problem: `$\\text{Prove that for any function } f: \\mathbb{Q} \\to \\mathbb{Z}, \\text{ there exists } a, b, c \\in \\mathbb{Q} \\text{ such that } \\\\ \\text{for } a<b<c, \\ f(a) \\leq f(b) \\text{ and } f(c) \\leq f(b)$`,
+    solution: `
+    \\begin{aligned}
+    &\\text{Suppose there exists a function } f \\text{ such that } f(y) < max(f(x), f(z)), \\ \\forall x<y<z \\\\
+    \\\\
+    &\\underline{\\text{claim:}} \\ f \\text{ is eventually strictly monotonic} \\\\
+    &\\underline{\\text{proof:}} \\\\
+    &\\text{Case 1: f is strictly decreasing.} \\\\
+    &\\text{Case 2: f is not strictly decreasing. Then, } \\exists a,b \\text{ such that } a<b \\text{ and } f(a) \\leq f(b). \\\\
+    &\\text{Take any rational } x > b > a \\implies f(b) < max(f(a), f(x)) \\implies f(b) < f(x). \\\\
+    &\\text{Now take any rational } y > x > b \\implies f(x) < max(f(b), f(y)) \\implies f(x) < f(y). \\\\
+    &\\text{We proved that } \\forall x, y \\in \\mathbb{Q} : \\ b < x < y \\implies f(x) < f(y) \\\\
+    &\\text{Thus, f is strictly increasing after a rational number b}. \\\\
+    \\\\
+    &\\underline{\\text{Contradiction}} \\\\
+    &\\text{Without loss of generality suppose that f is increasing after a point } b \\in \\mathbb{Q}. \\\\
+    &\\text{Consider the increasing sequence } q_m = b + \\frac{m}{n} > b, \\text{ for arbitrarily chosen n.} \\\\
+    &\\ f(q_m) > f(q_{m-1}) \\text{ and } f(q_m), f(q_{m-1}) \\in \\mathbb{Z} \\implies f(q_m) \\geq f(q_{m-1}) + 1 \\implies \\\\
+    &\\ f(q_n) \\geq n + f(q_0) \\implies f(b + 1) \\geq n + f(b) \\implies n \\leq f(b + 1) - f(b). \\\\
+    &\\text{Notice that we choosed n arbitrarily from } \\mathbb{N}. \\text{ Thus, the natural number are bounded} \\\\
+    &\\text{above by some integer } f(b + 1) - f(b). \\text{ This is clearly a contradiction} \\quad \\blacksquare
+    \\end{aligned}
+    `
+  },
+  {
+    id: `9`,
+    title: 'Problem 7 IMC 2025',
+    category: 'Number Theory',
+    problem: '$\\text{Find all nonempty sets } M \\subseteq \\mathbb{N^*} \\text{ satisfying the following properties:} \\\\ \\text{i) } x \\in M \\implies 2x \\in M  \\\\ \\text{ii) } x, y \\in M \\text{ and } 2 \\mid x + y \\implies \\frac{x + y}{2} \\in M $',
+    solution: `
+    \\begin{aligned}
+    &\\underline{\\text{claim 1:}} \\ x \\in M \\implies nx \\in M, \\ \\forall n \\in \\mathbb{N^*} \\\\
+    &\\underline{\\text{proof:}} \\text{ By (strong) induction on the length of the binary representation of n} \\\\ \\\\
+    &\\text{Base case: If the length of the binary represention of n is 1 then } n = 1. \\\\ &\\text{But we know that } x \\in M \\text{ due to our assumption}. \\\\
+    \\\\
+    &\\text{Inductive step: } \\\\ 
+    &\\text{Take the binary represention of 2n: } 2n = 2^k + 2^l + ... + 2^t, \\text{ where } k>l>...>t \\\\
+    &\\text{If the length is L then the length of } 2^k \\text{ is 1 and the length of } 2^l + ... + 2^t \\text { is } L-1. \\\\
+    &\\text{Thus, } 2^kx \\in M \\text{ and } (2^l + ... + 2^t)x \\in M \\implies (2^k + 2^l + ... + 2^t)x \\in M \\implies \\\\
+    &\\frac{2n}{2}x \\in M \\implies nx \\in M \\\\
+    \\\\
+    &\\underline{\\text{Definition:}} \\text{ For an element } x \\in M, \\ \\ <x> = \\{ nx \\mid n \\in \\mathbb{N^*} \\} \\\\
+    &\\underline{\\text{Definition:}} \\text{ Define } d(M) \\text{ to be the smallest subset for which: } M = \\bigcup_{x \\in d(M)} <x> \\\\
+    \\\\
+    &\\text{Take } d = gcd(d(M)), \\text{ the gcd of all the elements in } d(M). \\\\
+    &\\text{Now take any element of } x \\in d(M). \\text{ We know } d \\mid x \\text{, thus any multiple of x is also} \\\\
+    &\\text{multiple of d} \\implies <d> \\subseteq <x>.\\\\
+    \\\\
+    &\\ M = \\bigcup_{x \\in d(M)} <x> \\ \\subseteq \\ <d> \\text{. Thus M contains only multiples of d.} \\\\
+    \\\\
+    &\\underline{\\text{claim 2:}} \\ d \\text{ is odd} \\\\
+    &\\underline{\\text{proof:}} \\text{ Suppose d is even.} \\\\
+    &\\text{Then every number in M is divisible by an even number, thus M contains only } \\\\
+    &\\text{even numbers. If so, then there must be an } x \\in M \\text{ for which } v_2(x) \\geq 1 \\text{ in minimum.}\\\\
+    &\\text{In addition } 2x \\in M \\implies y = \\frac{x + 2x}{2} = \\frac{3x}{2} \\in M \\implies v_2(y) < v_2(x). \\\\
+    &\\text{This is a contadiction since we assumed } v_2(x) \\text{ to be minimum.} \\\\
+    \\\\
+    &\\underline{\\text{claim 3:}} \\text{ Two consecutive elements in M differ by } d \\\\
+    &\\underline{\\text{proof:}} \\text{ There are } a, b \\in M \\text{ so that } gcd(a, b) = d \\text{, else } d \\text{ would not be greatest divisor.} \\\\
+    &\\text{Bezout's theorem implies that } \\exists x, y \\text{ so that } |ax - by| = gcd(a, b) = d \\\\
+    &\\text{But } a, b \\in M \\text{ and } ax \\in <a>, \\ by \\in <b> \\implies ax, by \\in M \\text{ and }\\ ax, by \\text{ differ by d}.\\\\
+    &\\text{These are consecutive because all elements of M are divisible d, so d is the minimum} \\\\
+    &\\text{diffrence between terms in M.} \\\\
+    \\\\
+    &\\underline{\\text{Conclution:}} \\\\
+    &\\text{Take the consecutive elements of diffrence d to be } L, L + d. \\\\
+    &\\text{Take N to be the next greater element of } L + d \\text{ in M, and notice how L and L + d} \\\\
+    &\\text{must have diffrent parities (due to d being odd). The average of any integer and} \\\\
+    &\\text{one of L, L + d is also an integer. Starting from N the average with either L or L+ d} \\\\
+    &\\text{is inside M and greater than L. In addition, since L and L + d are consecutive the } \\\\
+    &\\text{average shall be greater or equal to L + d (there can't be an element in M between} \\\\
+    &\\text{L and L + d).} \\\\
+    \\\\
+    &\\text{For the sake of contradiction, suppose the average is not equal to L + d.} \\\\
+    &\\text{We can compute the average of the already computed average in M} \\\\
+    &\\text{and either L or L + d and so on. This produces a strictly decreasing} \\\\
+    &\\text{bounded sequence of natural numbers. This is a contradiction (infinite decent).}  \\\\
+    &\\text{Thus the average of L and N was equal to L + d} \\implies N = L + 2d \\\\
+    &\\text{the following patterns emerges:} \\\\
+    &\\ L, L + d \\in M \\implies L + d, L + 2d \\in M \\implies L + 2d, L + 3d \\in M \\implies ... \\\\
+    &\\text{Thus, all the multiples of d greater than L are in M}. \\\\
+    &\\ M = \\{ m \\in <d> \\mid m \\geq L \\} \\text{ for some } L, d \\in N \\text{ and } d \\text{ odd.} \\\\
+    &\\text{It is easy to verify that any set of this form satisfies the properties i) and ii).} \\quad \\blacksquare
+    \\end{aligned}
+    `
   }
 ];
 
