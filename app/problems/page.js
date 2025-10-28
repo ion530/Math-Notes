@@ -293,7 +293,7 @@ const problems = [
     \\\\
     &\\text{Thus, } f(x) = \\lim_{n \\to \\infty} f(x^{2^{n+1}})\\prod_{i=1}^{n} (1 + x^{2^i}) = \\lim_{n \\to \\infty}f(x^{2^{n+1}})\\lim_{n \\to \\infty} \\prod_{i=1}^{n} (1 + x^{2^i}). \\\\
     &\\text{Given that f is continuous } \\lim_{n \\to \\infty} f(x^{2^{n+1}}) = f( \\lim_{n \\to \\infty} (x^{2^{n+1}})) = f(0) = 1, \\text{ we can } \\\\
-    &\\text{compute } f(x) = \\prod_{n=1}^{\\infty} (1 + x^{2^n}) = \\sum_{n=0}^{\\infty} x^n = \\frac{1}{1 - x} \\quad \\blacksquare
+    &\\text{compute } f(x) = \\prod_{n=0}^{\\infty} (1 + x^{2^n}) = \\sum_{n=0}^{\\infty} x^n = \\frac{1}{1 - x} \\quad \\blacksquare
     \\end{aligned}
     `
   },
@@ -421,6 +421,45 @@ const problems = [
     &\\text{Thus, all the multiples of d greater than L are in M}. \\\\
     &\\ M = \\{ m \\in <d> \\mid m \\geq L \\} \\text{ for some } L, d \\in N \\text{ and } d \\text{ odd.} \\\\
     &\\text{It is easy to verify that any set of this form satisfies the properties i) and ii).} \\quad \\blacksquare
+    \\end{aligned}
+    `
+  },
+  {
+    id: `10`,
+    title: 'Problem 7 IMC 2023',
+    category: 'Analysis',
+    problem: `$\\text{Let } V \\text{ be the set of all continuous functions } f:[0, 1] \\to \\mathbb{R}, \\\\ \\text{differentiable on } (0, 1), \\text{ with the property that } f(0) = 0 \\text{ and } f(1) = 1. \\\\ \\text{Determine all } a \\in \\mathbb{R} \\text{ such that: } \\\\ \\forall f \\in V, \\ \\exists ξ \\in (0, 1), \\ \\ f(ξ) + a = f'(ξ) $`,
+    solution: `
+    \\begin{aligned}
+    &\\text{Take the function } f \\in V: f(x) = x \\text{ (obviously } f(0) = 0, f(1) = 1). \\\\
+    &\\text{Thus, there must exist } ξ \\in (0, 1) \\text{ so that } ξ + a = 1 \\implies a = 1 - ξ \\implies \\underline{a \\in (0, 1)}. \\\\ 
+    \\\\
+    &\\text{Take any function } f \\in V \\implies \\exists ξ \\in (0, 1), \\ \\ f(ξ) + a = f'(ξ) \\\\
+    &\\implies f(ξ) = (f(x) - ax)'|_{x = ξ}, \\text{ this motivates the following substitution:} \\\\
+    &\\ f_1(x) = f(x) - ax \\implies f_1(ξ) + aξ = f_1'(ξ) \\implies f_1(ξ) = (f_1(x) - a\\frac{x^2}{2})'|_{x = ξ} \\\\
+    &\\text{Similarly, } f_2(x) = f_1(x) - a\\frac{x^2}{2} \\implies f_2(ξ) + a\\frac{ξ^2}{2} = f_2'(ξ) \\implies ... \\text{ and so on.} \\\\
+    &\\text{Recursively, } f_{n+1}(x) = f_n(x) - a\\frac{x^n}{n!} \\text { and } f_n(ξ) + a\\frac{ξ^n}{n!} = f_n'(ξ), \\text{ for some } ξ \\in (0, 1). \\\\
+    &\\text{Notice, how } ξ \\in (0, 1) \\implies a\\frac{ξ^n}{n!} \\to 0, \\text{ as } n \\to \\infty. \\text{ Thus, intuitively we expect the} \\\\
+    &\\text{following: } f_{\\infty}(ξ) = f'_{\\infty}(ξ) , \\text{ for some } ξ \\in (0, 1). \\text{ Motivated by the argument above } \\\\
+    &\\text{we define the substitution: } h(x) = f_{\\infty}(x) = \\lim_{n \\to \\infty} f_n(x) = \\lim_{n \\to \\infty}(f(x) - a\\sum_{k=1}^{n} \\frac{x^k}{k!}) \\implies \\\\
+    &\\ h(x) = f(x) - a\\sum_{n=1}^{\\infty} \\frac{x^n}{n!} = f(x) + a - ae^x \\implies h(0) = 0 \\text{ and } h(1) = 1 + a - ae. \\\\
+    \\\\
+    &\\text{Thus, the original proposition holds if and only if  } \\exists ξ \\in (0, 1) \\ \\ h(ξ) = h'(ξ) \\\\
+    &\\text{for all differentiable functions on } (0, 1) \\text{ with } h(0) = 0 \\text{ and } h(1) = 1 + a - ae. \\\\
+    \\\\
+    &\\text{Case 1: } a = \\frac{1}{e - 1} \\iff h(0) = h(1) = 0 \\\\
+    &\\ h'(ξ) - h(ξ) = 0 \\iff e^{-ξ}h'(ξ) - e^{-ξ}h(ξ) = 0 \\iff (e^{-x}h(x))'|_{x = ξ} = 0 \\\\
+    &\\text{But, } e^0h(0) = eh(1) = 0 \\text{ thus (due to Rolle's theorem) there is an } ξ \\in (0, 1) \\text{ so that:} \\\\
+    &\\ (e^{-x}h(x))'|_{x = ξ} = 0 \\implies h'(ξ) = h(ξ) \\implies \\underline{f(ξ) + a = f'(ξ), \\ \\forall f \\in V}. \\\\
+    \\\\
+    &\\text{Case 2: } a \\neq \\frac{1}{e - 1} \\iff h(1) \\neq 0 \\\\
+    &\\text{A counterexample in V is enouph to show that such } a \\text{ doesn't satisfy our condtions.} \\\\ 
+    &\\text{Take } h(x) = (1 + a - ea)x \\ \\text{ and suppose that } \\exists ξ \\in (0, 1) \\text{ so that } h(ξ) = h'(ξ) \\iff \\\\
+    &\\ (1 + a - ea)ξ = 1 + a - ea \\implies ξ = 1 \\text{, but we assumed that } ξ \\in (0, 1). \\text{ Thus if we} \\\\
+    &\\text{were to take } f(x) = ae^x + (1 + a - ea)x - a \\text{, where } f \\in V \\text{ we would deduce that: } \\\\
+    &\\nexists ξ \\in (0, 1) \\text{ so that } f(ξ) + a = f'(ξ) \\text{ for any } a \\neq \\frac{1}{e - 1}. \\\\
+    \\\\
+    &\\underline{\\text{In conclution:}} \\text{ The only real number } a \\text{ with such properties is } a = \\frac{1}{e - 1} \\quad \\blacksquare
     \\end{aligned}
     `
   }
