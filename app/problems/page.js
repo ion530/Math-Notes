@@ -462,6 +462,29 @@ const problems = [
     &\\underline{\\text{In conclution:}} \\text{ The only real number } a \\text{ with such properties is } a = \\frac{1}{e - 1} \\quad \\blacksquare
     \\end{aligned}
     `
+  },
+  {
+    id: `11`,
+    title: 'Problem 2 IMC 2022',
+    category: 'Algebra',
+    problem: `$\\text{Let n be a positive integer. Find all n × n real matrices A with only real} \\\\ \\text{eigenvalues satisfying: } A + A^k = A^{T} \\text{ for some } k \\geq n $`,
+    solution: `
+    \\begin{aligned}
+    &\\text{Take a pair of eigenvalue } λ \\text{ and eigenvector } v \\text{ for the matrix } A. \\\\
+    &\\ Au = λu \\implies A^ku = λ^ku \\text{ and } u^TA^{T} = λu^{T} \\text{ (known results about eigenvalues of A)} \\\\
+    &\\ A + A^k = A^{T} \\implies Au + A^ku = A^{T}u \\implies λu + λ^ku = A^{T}u \\text{ (applied u from right)} \\\\
+    &\\implies u^{T}λu + u^{T}λ^ku = u^{T}A^{T}u \\implies λ||u||^2 + λ^k||u||^2 = λu^{T}u = λ||u||^2 \\implies \\\\
+    &\\ λ^k||u||^2 = 0 \\implies λ^k = 0 \\implies λ = 0, \\ \\forall λ \\ \\text{ (applied } u^{T} \\text{ from left).} \\\\
+    \\\\
+    &\\text{Cayley Hamilton theorem implies that } A^n = 0 \\implies A^k = 0 \\implies A^{T} = A. \\\\
+    &\\text{Take } n_m \\text{ to be the minimum number for which } A^{n_m} = 0. \\text{ Suppose, for the sake of} \\\\
+    &\\text{contradiction that } n_m > 1 \\text{ (we want to show that } A = 0). \\\\
+    &\\ ||A^{n_m - 1}||_F = trace((A^{n_m - 1})^{T}A^{n_m - 1}) = trace((A^{T})^{n_m - 1}A^{n_m - 1}) = trace(A^{n_m - 1}A^{n_m - 1}) \\\\
+    &\\ ||A^{n_m - 1}||_F = trace(A^{2n_m - 2}) \\text{ and if } n_m > 1 \\text{ then } 2n_m - 2 \\geq n_m \\text{ thus } A^{2n_m - 2} = 0 \\implies \\\\
+    &\\ ||A^{n_m - 1}||_F = 0 \\implies A^{n_m - 1} = 0 \\text{, contradicting the minimality of } n_m. \\\\ \\\\
+    &\\text{In conclution } n_m = 1 \\implies \\underline{A = 0 \\text{ is the only solution}} \\quad \\blacksquare
+    \\end{aligned}
+    `
   }
 ];
 

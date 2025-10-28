@@ -1,4 +1,4 @@
-// link: https://math-notes-rh0kj65ks-ion530s-projects.vercel.app/
+// link: https://math-notes-oamw990t8-ion530s-projects.vercel.app/
 // run locally: npm run dev
 // git push: git add . && git commit -m "your message" && git push origin main
 
